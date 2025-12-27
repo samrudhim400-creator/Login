@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Login & Registration</title>
-
     <style>
         * {
             box-sizing: border-box;
@@ -20,16 +19,12 @@
         }
 
         .container {
-            width: 380px;
-            background: #fff;
+            width: 350px;
             padding: 30px;
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             border-radius: 10px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            transition: transform 0.5s ease;
-        }
-
-        .container:hover {
-            transform: translateY(-5px);
+            transition: 0.5s;
         }
 
         h2 {
@@ -39,70 +34,100 @@
 
         input {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             margin: 10px 0;
-            border-radius: 5px;
             border: 1px solid #ccc;
+            border-radius: 5px;
             outline: none;
-            transition: border 0.3s;
         }
 
         input:focus {
-            border-color: #007BFF;
+            border-color: black;
         }
 
         button {
             width: 100%;
-            padding: 12px;
-            background: #007BFF;
-            border: none;
+            padding: 10px;
+            background: black;
             color: white;
-            font-size: 16px;
+            border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
+            transition: 0.3s;
         }
 
         button:hover {
-            background: #0056b3;
-            transform: scale(1.03);
+            background: #333;
+            transform: scale(1.05);
         }
 
         .toggle {
             text-align: center;
             margin-top: 15px;
+            cursor: pointer;
+            color: black;
             font-size: 14px;
         }
 
-        .toggle span {
-            color: #007BFF;
-            cursor: pointer;
-            font-weight: bold;
+        .toggle:hover {
+            text-decoration: underline;
         }
 
         .form {
             display: none;
-            animation: fadeIn 0.5s ease;
+            animation: fade 0.5s ease;
         }
 
         .form.active {
             display: block;
         }
 
-        @keyframes fadeIn {
+        @keyframes fade {
             from {
                 opacity: 0;
-                transform: translateX(20px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+<div class="container">
+    <!-- Login Form -->
+    <div class="form active" id="loginForm">
+        <h2>Login</h2>
+        <input type="text" placeholder="Username" required>
+        <input type="password" placeholder="Password" required>
+        <button>Login</button>
+        <div class="toggle" onclick="showRegister()">Not registered? Create account</div>
+    </div>
 
-        <!-- Login Form
+    <!-- Register Form -->
+    <div class="form" id="registerForm">
+        <h2>Register</h2>
+        <input type="text" placeholder="Username" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button>Register</button>
+        <div class="toggle" onclick="showLogin()">Already have an account? Login</div>
+    </div>
+</div>
+
+<script>
+    function showRegister() {
+        document.getElementById("loginForm").classList.remove("active");
+        document.getElementById("registerForm").classList.add("active");
+    }
+
+    function showLogin() {
+        document.getElementById("registerForm").classList.remove("active");
+        document.getElementById("loginForm").classList.add("active");
+    }
+</script>
+
+</body>
+</html>
